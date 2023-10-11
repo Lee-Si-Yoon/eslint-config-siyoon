@@ -56,6 +56,7 @@
     "bump": "npm version minor",
     "pub": "npm publish",
     "bump:beta": "npm version prerelease --preid beta",
-    "pub:beta": "npm publish --tag beta"
+    "pub:beta": "npm publish --tag beta",
+    "pretty": "npx prettier . --write"
   }
 }

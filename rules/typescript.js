@@ -53,7 +53,7 @@ module.exports = {
     // Replace @viclafouch/eslint 'no-redeclare' rule with '@typescript-eslint' version
     // https://github.com/typescript-eslint/typescript-eslint/blob/master/packages/eslint-plugin/docs/rules/no-redeclare.md
     'no-redeclare': 'off',
-    '@typescript-eslint/no-redeclare': baseBestPracticesRules['no-redeclare'],
+    // '@typescript-eslint/no-redeclare': baseBestPracticesRules['no-redeclare'],
 
     // Replace @viclafouch/eslint 'no-shadow' rule with '@typescript-eslint' version
     // https://github.com/typescript-eslint/typescript-eslint/blob/master/packages/eslint-plugin/docs/rules/no-shadow.md

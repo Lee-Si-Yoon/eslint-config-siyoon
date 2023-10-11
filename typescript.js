@@ -2,9 +2,9 @@
  * @type {import("eslint").Linter.Config}
  */
 module.exports = {
-  extends: ["./rules/typescript.js"].map(require.resolve),
+  extends: ['./rules/typescript.js'].map(require.resolve),
   rules: {},
   parserOptions: {
-    project: "./tsconfig.json",
+    project: './tsconfig.json',
   },
 };

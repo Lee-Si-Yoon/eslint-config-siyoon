@@ -25,7 +25,7 @@ or js version for .eslintrc.js file:
  * @type {import("eslint").Linter.Config}
  */
 module.exports = {
-  extends: ["eslint-config-siyoon"],
+  extends: ['eslint-config-siyoon'],
 };
 ```
 
@@ -37,7 +37,7 @@ TypeScript's built-in typings are not perfect. viclafouch-reset makes them bette
 
 ```js
 // Do not add any other lines of code to this file!
-import "eslint-config-siyoon/reset.d";
+import 'eslint-config-siyoon/reset.d';
 ```
 
 2. Enjoy improved typings across your entire project.
@@ -82,6 +82,27 @@ Be sure to add the prettier config at the end of your extends array.
     "eslint-config-siyoon/prettier" // be sure to be the last
   ]
 }
+```
+
+and create `prettierrc.config.js` in project root
+
+```js
+/**
+ *@type {import("prettier").Config}
+ */
+const config = {
+  semi: true,
+  singleQuote: true,
+  // printWidth: 80,
+  tabWidth: 2,
+  // jsxSingleQuote: false,
+  trailingComma: 'es5',
+  endOfLine: 'auto',
+  // bracketSameLine: false,
+  arrowParens: 'always',
+};
+
+module.exports = config;
 ```
 
 ### If you use VS Code

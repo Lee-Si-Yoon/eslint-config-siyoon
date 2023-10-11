@@ -1,7 +1,7 @@
-const { rules: baseBestPracticesRules } = require('./best-practices')
-const { rules: baseErrorsRules } = require('./errors')
-const { rules: baseVariablesRules } = require('./variables')
-const { rules: baseES6Rules } = require('./es6')
+const { rules: baseBestPracticesRules } = require('./best-practices');
+const { rules: baseErrorsRules } = require('./errors');
+const { rules: baseVariablesRules } = require('./variables');
+const { rules: baseES6Rules } = require('./es6');
 
 /**
  * @type {import("eslint").Linter.Config}
@@ -12,20 +12,20 @@ module.exports = {
   settings: {
     // Apply special parsing for TypeScript files
     'import/parsers': {
-      '@typescript-eslint/parser': ['.ts', '.tsx', '.d.ts']
+      '@typescript-eslint/parser': ['.ts', '.tsx', '.d.ts'],
     },
     // Append 'ts' extensions to @viclafouch/eslint 'import/resolver' setting
     // Original: ['.mjs', '.js', '.json']
     'import/resolver': {
       node: {
-        extensions: ['.mjs', '.js', '.json', '.ts', '.d.ts']
-      }
+        extensions: ['.mjs', '.js', '.json', '.ts', '.d.ts'],
+      },
     },
     // Append 'ts' extensions to @viclafouch/eslint 'import/extensions' setting
     // Original: ['.js', '.mjs', '.jsx']
     'import/extensions': ['.js', '.mjs', '.jsx', '.ts', '.tsx', '.d.ts'],
     // Resolve type definition packages
-    'import/external-module-folders': ['node_modules', 'node_modules/@types']
+    'import/external-module-folders': ['node_modules', 'node_modules/@types'],
   },
   rules: {
     // Replace @viclafouch/eslint 'default-param-last' rule with '@typescript-eslint' version
@@ -58,7 +58,7 @@ module.exports = {
     // Replace @viclafouch/eslint 'no-shadow' rule with '@typescript-eslint' version
     // https://github.com/typescript-eslint/typescript-eslint/blob/master/packages/eslint-plugin/docs/rules/no-shadow.md
     'no-shadow': 'off',
-    '@typescript-eslint/no-shadow': baseVariablesRules['no-shadow'],
+    // "@typescript-eslint/no-shadow": baseVariablesRules["no-shadow"],
 
     // Replace @viclafouch/eslint 'no-throw-literal' rule with '@typescript-eslint' version
     // https://github.com/typescript-eslint/typescript-eslint/blob/master/packages/eslint-plugin/docs/rules/no-throw-literal.md
@@ -69,8 +69,8 @@ module.exports = {
     // Replace @viclafouch/eslint 'no-unused-expressions' rule with '@typescript-eslint' version
     // https://github.com/typescript-eslint/typescript-eslint/blob/master/packages/eslint-plugin/docs/rules/no-unused-expressions.md
     'no-unused-expressions': 'off',
-    '@typescript-eslint/no-unused-expressions':
-      baseBestPracticesRules['no-unused-expressions'],
+    // '@typescript-eslint/no-unused-expressions':
+    //   baseBestPracticesRules['no-unused-expressions'],
 
     // Replace @viclafouch/eslint 'no-unused-vars' rule with '@typescript-eslint' version
     // https://github.com/typescript-eslint/typescript-eslint/blob/master/packages/eslint-plugin/docs/rules/no-unused-vars.md
@@ -99,7 +99,7 @@ module.exports = {
     'no-return-await': 'off',
     '@typescript-eslint/return-await': [
       baseES6Rules['no-return-await'],
-      'in-try-catch'
+      'in-try-catch',
     ],
 
     // Accept banning ts lines
@@ -110,13 +110,13 @@ module.exports = {
       'error',
       {
         selector: 'typeLike',
-        format: ['PascalCase']
-      }
+        format: ['PascalCase'],
+      },
     ],
 
     // Require consistently using T[] instead of Array<T>
     // https://typescript-eslint.io/rules/array-type
-    '@typescript-eslint/array-type': 'error'
+    '@typescript-eslint/array-type': 'error',
 
     // '@typescript-eslint/ban-types': [
     //   'error',
@@ -131,7 +131,13 @@ module.exports = {
     //       }
     //     }
     //   }
-    // ]
+    // ],
+
+    // https://typescript-eslint.io/rules/consistent-type-exports
+    '@typescript-eslint/consistent-type-exports': 'error',
+
+    // https://typescript-eslint.io/rules/consistent-type-imports
+    '@typescript-eslint/consistent-type-imports': 'error',
   },
   overrides: [
     {
@@ -163,8 +169,8 @@ module.exports = {
         'import/named': 'off',
         'import/no-named-as-default-member': 'off',
         // Disable `import/no-unresolved`, see README.md for details
-        'import/no-unresolved': 'off'
-      }
-    }
-  ]
-}
+        'import/no-unresolved': 'off',
+      },
+    },
+  ],
+};

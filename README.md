@@ -138,11 +138,7 @@ You can also add additional rules for only React.js ecosystem (without Next.js).
 
 ```json
 {
-  "extends": [
-    "eslint-config-siyoon",
-    "eslint-config-siyoon/react",
-    "eslint-config-siyoon/hooks"
-  ]
+  "extends": ["eslint-config-siyoon", "eslint-config-siyoon/react"]
 }
 ```
 
@@ -156,8 +152,7 @@ Be sure to add the prettier config at the end of your extends array.
 {
   "extends": [
     "eslint-config-siyoon",
-    "eslint-config-siyoon/react",
-    "eslint-config-siyoon/hooks",
+    "your other configurations",
     "eslint-config-siyoon/prettier" // be sure to be the last
   ]
 }

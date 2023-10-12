@@ -9,7 +9,6 @@ module.exports = {
     './rules/best-practices',
     './rules/node',
     './rules/errors',
-    './rules/imports',
     './rules/style',
     './rules/variables',
     './rules/es6',

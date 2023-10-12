@@ -1,4 +1,21 @@
-### Local / Per Project Install
+# Eslint + Prettier Config ver. siyoon
+
+- [Local / Per Project Install](#local---per-project-install)
+  - [Scripts](#scripts)
+- [If you use TypeScript](#if-you-use-typescript)
+  - [Better typing](#better-typing)
+  - [Scripts](#scripts-1)
+- [If you use React.js](#if-you-use-reactjs)
+- [If you want to use Prettier](#if-you-want-to-use-prettier)
+  - [Scripts](#scripts-2)
+- [If you want to enable imports sorting](#if-you-want-to-enable-imports-sorting)
+- [If you use VS Code](#if-you-use-vs-code)
+
+<small><i><a href='http://ecotrust-canada.github.io/markdown-toc/'>Table of contents generated with markdown-toc</a></i></small>
+
+---
+
+## Local / Per Project Install
 
 If you don't already have a package.json file, create one with npm init.
 
@@ -29,9 +46,66 @@ module.exports = {
 };
 ```
 
+### Scripts
+
+```json
+{
+  "scripts": {
+    "lint": "eslint src .js",
+    "lint:fix": "npm run lint -- --fix"
+  }
+}
+```
+
+---
+
+## If you use TypeScript
+
+Extend your tsconfig
+First, extend your current config file tsconfig.json with this following snippet:
+
+```json
+{
+  "extends": "eslint-config-siyoon/tsconfig.json"
+}
+```
+
+Add the typescript eslint config
+Then, add the TypeScript Eslint rules to your .eslintrc file:
+
+```js
+{
+  extends: [
+    'eslint-config-siyoon',
+    'eslint-config-siyoon/typescript'
+  ],
+  parserOptions: {
+    project: true,
+    tsconfigRootDir: __dirname
+  },
+  root: true
+}
+```
+
+or js version for .eslintrc.js file:
+
+```js
+/**
+ * @type {import("eslint").Linter.Config}
+ */
+module.exports = {
+  extends: ['eslint-config-siyoon', 'eslint-config-siyoon/typescript'],
+  parserOptions: {
+    project: true,
+    tsconfigRootDir: __dirname,
+  },
+  root: true,
+};
+```
+
 ### Better typing
 
-TypeScript's built-in typings are not perfect. viclafouch-reset makes them better.
+TypeScript's built-in typings are not perfect. [ts-reset](https://www.totaltypescript.com/ts-reset) makes them better.
 
 1. Create a reset.d.ts file in your project with these contents:
 
@@ -44,18 +118,21 @@ import 'eslint-config-siyoon/reset.d';
 
 ### Scripts
 
-You can add two scripts to your package.json to lint and/or fix your code:
-
 ```json
 {
   "scripts": {
-    "lint": "tsc --noEmit && eslint . --ext .js,.jsx,.ts,.tsx",
+    "lint": "tsc --noEmit && eslint src .js,.jsx,.ts,.tsx",
     "lint:fix": "npm run lint -- --fix"
   }
 }
 ```
 
-### If you use React.js
+remember if you use vite or swc they only transpiles the files and not check no types `tsc --noEmit`
+refer to [vite](https://ko.vitejs.dev/guide/features.html#transpile-only)
+
+---
+
+## If you use React.js
 
 You can also add additional rules for only React.js ecosystem (without Next.js).
 
@@ -69,7 +146,9 @@ You can also add additional rules for only React.js ecosystem (without Next.js).
 }
 ```
 
-### If you want to use Prettier
+---
+
+## If you want to use Prettier
 
 Be sure to add the prettier config at the end of your extends array.
 
@@ -86,26 +165,50 @@ Be sure to add the prettier config at the end of your extends array.
 
 and create `prettierrc.config.js` in project root
 
-```js
-/**
- *@type {import("prettier").Config}
- */
-const config = {
-  semi: true,
-  singleQuote: true,
+```json
+{
+  "semi": true,
+  "singleQuote": true,
+  "tabWidth": 2,
+  "trailingComma": "es5",
+  "endOfLine": "auto",
+  "arrowParens": "always"
   // printWidth: 80,
-  tabWidth: 2,
   // jsxSingleQuote: false,
-  trailingComma: 'es5',
-  endOfLine: 'auto',
   // bracketSameLine: false,
-  arrowParens: 'always',
-};
+}
 
-module.exports = config;
+
+// below 3 options can be modified
 ```
 
-### If you use VS Code
+### Scripts
+
+Run Prettier all your files via
+
+```json
+{
+  "scripts": {
+    "pretty": "npx prettier . --write"
+  }
+}
+```
+
+---
+
+## If you want to enable imports sorting
+
+If you want to sort your imports using your alias at the same time from your jsonfig.json or tsconfig.json file.
+
+```json
+{
+  "extends": ["eslint-config-siyoon", "eslint-config-siyoon/imports"]
+}
+```
+
+---
+
+## If you use VS Code
 
 Once you have done. You probably want your editor to lint and fix for you.
 
